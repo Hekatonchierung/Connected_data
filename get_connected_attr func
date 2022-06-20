@@ -1,0 +1,49 @@
+import pandas as pd
+
+
+def get_connected_attr(df=None, value=None, result=None):
+    if df:
+        try:
+            data_df = pd.read_csv(df)
+        except FileNotFoundError:
+            try:
+                data_df = pd.read_excel(df)
+            except FileNotFoundError:
+                try:
+                    data_df = pd.DataFrame(df)
+                except ValueError:
+                    print(
+                        """
+                        Check your variables.
+                        The first should be either a string containing a path
+                        to a data file or the data itself represented by a 
+                        pd.DataFrame object or any other convertible to it.
+                        """
+                    )
+    else:
+        print(
+            """
+            Enter the first variable - the data. 
+            It should be either a string containing a path
+            to a data file or the data itself represented by a 
+            pd.DataFrame object or any other convertible to it.
+            """
+        )
+        data_df = input()
+        try:
+            data_df = pd.read_csv(df)
+        except FileNotFoundError:
+            try:
+                data_df = pd.read_excel(df)
+            except FileNotFoundError:
+                try:
+                    data_df = pd.DataFrame(df)
+                except ValueError:
+                    print(
+                        """
+                        Check your variables.
+                        The first should be either a string containing a path
+                        to a data file or the data itself represented by a 
+                        pd.DataFrame object or any other convertible to it.
+                        """
+                    )
